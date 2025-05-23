@@ -5,12 +5,13 @@
 .terraform/
 .terraform.lock.hcl
 terraform.tfplan
-terraform.tfplan.*
+*.tfplan
 
-# AWS credentials
+# AWS credentials and sensitive files
 .aws/
 *.pem
 *.key
+primary_outputs.env
 
 # IDE files
 .vscode/
@@ -33,3 +34,15 @@ crash.log
 # Environment variables
 .env
 .env.local
+
+# Node modules (if any)
+node_modules/
+
+# Python files (if any)
+__pycache__/
+*.pyc
+*.pyo
+
+# Temporary files
+tmp/
+temp/
