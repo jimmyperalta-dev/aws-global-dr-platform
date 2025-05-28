@@ -62,8 +62,8 @@ resource "aws_db_instance" "main" {
   copy_tags_to_snapshot = true
   deletion_protection   = false
 
-  # Performance Insights
-  performance_insights_enabled = true
+  # Performance Insights (disabled for t3.micro)
+  performance_insights_enabled = false
 
   # Skip final snapshot for demo purposes
   skip_final_snapshot = true
@@ -87,11 +87,16 @@ resource "aws_db_instance" "replica" {
   # Instance configuration
   instance_class = var.db_instance_class
 
-  # Network configuration
-  vpc_security_group_ids = [var.rds_security_group_id]
+  # Network configuration for cross-region replica
+  db_subnet_group_name   = var.db_subnet_group_name
+  vpc_security_group_ids = [var.rds_security_group_id] 
 
-  # Performance Insights
-  performance_insights_enabled = true
+  # Cross-region encryption (use default KMS key for the region)
+  storage_encrypted = true
+  kms_key_id       = "arn:aws:kms:us-west-2:177206616747:alias/aws/rds"
+
+  # Performance Insights (disabled for t3.micro)
+  performance_insights_enabled = false
 
   # Skip final snapshot for demo purposes
   skip_final_snapshot = true

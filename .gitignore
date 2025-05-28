@@ -46,3 +46,12 @@ __pycache__/
 # Temporary files
 tmp/
 temp/
+
+# Architecture diagram source files (optional - keep only final PNG)
+*.drawio
+*.vsd
+*.vsdx
+
+# Documentation drafts
+*.draft
+*.wip

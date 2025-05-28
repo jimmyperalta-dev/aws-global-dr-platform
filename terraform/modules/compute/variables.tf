@@ -52,8 +52,7 @@ variable "instance_type" {
   type        = string
   default     = "t3.micro"
   validation {
-    condition = can(regex("^t3\\.(nano|micro|small|medium|large|xlarge|2xlarge)$", var.instance_type)) || 
-                can(regex("^t2\\.(nano|micro|small|medium|large|xlarge|2xlarge)$", var.instance_type))
+    condition = can(regex("^t3\\.(nano|micro|small|medium|large|xlarge|2xlarge)$", var.instance_type)) || can(regex("^t2\\.(nano|micro|small|medium|large|xlarge|2xlarge)$", var.instance_type))
     error_message = "Instance type must be a valid t2 or t3 instance type."
   }
 }

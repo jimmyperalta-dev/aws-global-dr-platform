@@ -139,6 +139,10 @@ resource "aws_s3_bucket_lifecycle_configuration" "main" {
     id     = "lifecycle-rule"
     status = "Enabled"
 
+    filter {
+      prefix = ""
+    }
+
     transition {
       days          = 30
       storage_class = "STANDARD_IA"

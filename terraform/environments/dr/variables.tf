@@ -1,6 +1,37 @@
 # terraform/environments/dr/variables.tf
 
 # AWS Region
+variable "aws_region" {
+  description = "AWS region for DR infrastructure"
+  type        = string
+  default     = "us-west-2"
+}
+
+# Networking variables
+variable "vpc_cidr" {
+  description = "CIDR block for VPC"
+  type        = string
+  default     = "10.1.0.0/16"
+}
+
+variable "public_subnet_cidrs" {
+  description = "CIDR blocks for public subnets"
+  type        = list(string)
+  default     = ["10.1.1.0/24", "10.1.2.0/24"]
+}
+
+variable "private_subnet_cidrs" {
+  description = "CIDR blocks for private subnets"
+  type        = list(string)
+  default     = ["10.1.10.0/24", "10.1.20.0/24"]
+}
+
+variable "database_subnet_cidrs" {
+  description = "CIDR blocks for database subnets"
+  type        = list(string)
+  default     = ["10.1.11.0/24", "10.1.21.0/24"]
+}
+
 variable "enable_nat_gateway" {
   description = "Should be true to provision NAT Gateway"
   type        = bool
@@ -42,35 +73,4 @@ variable "db_instance_class" {
 variable "source_db_identifier" {
   description = "Identifier of the source database in primary region"
   type        = string
-}aws_region" {
-  description = "AWS region for DR infrastructure"
-  type        = string
-  default     = "us-west-2"
 }
-
-# Networking variables
-variable "vpc_cidr" {
-  description = "CIDR block for VPC"
-  type        = string
-  default     = "10.1.0.0/16"
-}
-
-variable "public_subnet_cidrs" {
-  description = "CIDR blocks for public subnets"
-  type        = list(string)
-  default     = ["10.1.1.0/24", "10.1.2.0/24"]
-}
-
-variable "private_subnet_cidrs" {
-  description = "CIDR blocks for private subnets"
-  type        = list(string)
-  default     = ["10.1.10.0/24", "10.1.20.0/24"]
-}
-
-variable "database_subnet_cidrs" {
-  description = "CIDR blocks for database subnets"
-  type        = list(string)
-  default     = ["10.1.11.0/24", "10.1.21.0/24"]
-}
-
-variable "
